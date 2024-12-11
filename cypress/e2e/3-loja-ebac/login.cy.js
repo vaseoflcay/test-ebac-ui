@@ -1,13 +1,42 @@
 
 
 describe('Funcionalidade: Login', () => {
+  
+    //import { faker } from '@faker-js/faker'; 
+    const { faker } = require('@faker-js/faker'); 
+
+    const perfil = require('../../fixtures/perfil.json')
 
     beforeEach(() => {
-        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+        //cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+        cy.visit('minha-conta/')
     });
 
     afterEach(() => {
         cy.screenshot()
+    });
+
+    it('Deve fazer login com sucesso - usando massa de dados', () => {
+
+        cy.get('#username').type(perfil.usuario)
+        cy.get('#password').type(perfil.senha)
+        cy.get('.woocommerce-form > .button').click()
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain','Olá, lgsm.teste (não é lgsm.teste? Sair)')
+        
+    });
+
+    it.only('Deve fazer login com sucesso - usando fixture', () => {
+
+        cy.fixture('perfil').then(data =>{
+
+        cy.get('#username').type(data.usuario, {log:false})//log:false conceals the username and password
+        cy.get('#password').type(data.senha, {log:false})
+        cy.get('.woocommerce-form > .button').click()
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain','Olá, lgsm.teste (não é lgsm.teste? Sair)')
+
+        })
+
+        
     });
 
     it('Deve fazer login com sucesso', () => {
@@ -35,5 +64,7 @@ describe('Funcionalidade: Login', () => {
         //cy.get('.woocommerce-error > li').should('contain','Erro: A senha fornecida para o e-mail lgsm.teste@teste.com.br está incorreta. Perdeu a senha?	')
         cy.get('.woocommerce-error > li').should('exist')
     });
+
+  
     
 });
