@@ -5,7 +5,8 @@ describe('Funcionalidade: Cadastro', () => {
     const { faker } = require('@faker-js/faker');
 
     beforeEach(() => {
-        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+        //cy.visit('http://lojaebac.ebaconline.art.br/produtos/')
+        cy.visit('minha-conta/')
     });
 
     it('Deve completar o cadastro com sucesso - usando variaveis', () => {
@@ -27,5 +28,11 @@ describe('Funcionalidade: Cadastro', () => {
 
         cy.get('.woocommerce-message').should('contain','Detalhes da conta modificados com sucesso.')
     });
-    
+
+
+    it.only('Deve completar cadastro com sucesso - utilizando commandos customizados', () => {
+    cy.preCadastro(faker.internet.email(),'lgsmteste@123',faker.person.firstName(),faker.person.lastName()  )
+    cy.get('.woocommerce-message').should('contain','Detalhes da conta modificados com sucesso.')
+   
+    });
 });

@@ -12,9 +12,9 @@ describe('Funcionalidade: Login', () => {
         cy.visit('minha-conta/')
     });
 
-    afterEach(() => {
-        cy.screenshot()
-    });
+    //afterEach(() => {
+        //cy.screenshot()
+    //});
 
     it('Deve fazer login com sucesso - usando massa de dados', () => {
 
@@ -25,18 +25,26 @@ describe('Funcionalidade: Login', () => {
         
     });
 
-    it.only('Deve fazer login com sucesso - usando fixture', () => {
+    it('Deve fazer login com sucesso - usando fixture', () => {
 
-        cy.fixture('perfil').then(data =>{
+        cy.fixture('perfil').then(dados =>{
 
-        cy.get('#username').type(data.usuario, {log:false})//log:false conceals the username and password
-        cy.get('#password').type(data.senha, {log:false})
+        cy.get('#username').type(dados.usuario, {log:false})//log:false conceals the username and password
+        cy.get('#password').type(dados.senha, {log:false})
         cy.get('.woocommerce-form > .button').click()
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain','Olá, lgsm.teste (não é lgsm.teste? Sair)')
 
         })
 
         
+    });
+
+    it.only('Deve fazer login com sucesso - usando comandos customizado', () => {
+    
+        cy.login('lgsm.teste@teste.com.br','lgsmteste@123')
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain','Olá, lgsm.teste (não é lgsm.teste? Sair)')
+        
+
     });
 
     it('Deve fazer login com sucesso', () => {
@@ -56,7 +64,7 @@ describe('Funcionalidade: Login', () => {
         cy.get('.woocommerce-error > li').should('exist')
     });
 
-    it.only('Deve inserir uma mensagem de erro ao inserir uma senha inválida', () => {
+    it('Deve inserir uma mensagem de erro ao inserir uma senha inválida', () => {
         //cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
         cy.get('#username').type('lgsm.teste@teste.com.br')
         cy.get('#password').type('lgsmteste@')
