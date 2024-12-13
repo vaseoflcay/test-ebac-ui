@@ -9,10 +9,10 @@ describe('Funcionalidade: Detalhes da Conta', () => {
         })
     });
 
-    //it('Deve completar detalhes da conta com sucesso', () => {
-        //cy.detalhesConta('luis','marques','luis.qa')
-        //cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados com sucesso.')
+    it('Deve completar detalhes da conta com sucesso', () => {
+        cy.detalhesConta('luis','marques','luis.qa')
+        cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados com sucesso.')
         
-    //});
+    });
     
 });

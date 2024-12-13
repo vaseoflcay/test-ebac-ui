@@ -1,0 +1,35 @@
+[
+
+ {
+     "nomeProduto": "Aero Daily Fitness Tee",
+     "tamanho": "L",
+     "cor": "Brown",
+     "quantidade": 3
+
+ },
+
+{
+
+    "nomeProduto": "Zeppelin Yoga Pant",
+    "tamanho": "32",
+    "cor": "Green",
+    "quantidade": 8
+
+
+},
+
+{
+
+    "nomeProduto": "Augusta Pullover Jacket",
+    "tamanho": "M",
+    "cor": "Red",
+    "quantidade": 10
+
+
+
+}
+
+
+
+
+]
